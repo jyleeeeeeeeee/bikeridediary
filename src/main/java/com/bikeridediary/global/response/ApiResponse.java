@@ -1,0 +1,57 @@
+package com.bikeridediary.global.response;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+/**
+ * Common API response wrapper.
+ * All API responses use this format for consistency.
+ *
+ * Success: { "success": true, "data": { ... } }
+ * Error:   { "success": false, "error": { "code": "...", "message": "..." } }
+ */
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiResponse<T> {
+
+    private boolean success;
+    private T data;
+    private ErrorDetail error;
+
+    // 성공 응답 (데이터 포함)
+    public static <T> ApiResponse<T> ok(T data) {
+        ApiResponse<T> response = new ApiResponse<>();
+        response.success = true;
+        response.data = data;
+        return response;
+    }
+
+    // 성공 응답 (데이터 없음, e.g. DELETE)
+    public static <T> ApiResponse<T> ok() {
+        ApiResponse<T> response = new ApiResponse<>();
+        response.success = true;
+        return response;
+    }
+
+    // 오류 응답
+    public static <T> ApiResponse<T> fail(String code, String message) {
+        ApiResponse<T> response = new ApiResponse<>();
+        response.success = false;
+        response.error = new ErrorDetail(code, message);
+        return response;
+    }
+
+    @Getter
+    public static class ErrorDetail {
+        private final String code;
+        private final String message;
+
+        public ErrorDetail(String code, String message) {
+            this.code = code;
+            this.message = message;
+        }
+    }
+}

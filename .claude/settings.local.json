@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.\\\\gradlew build *)",
+      "Bash(cd C:\\\\\\\\Users\\\\\\\\jyl93\\\\\\\\bikeridediary\\\\\\\\brd_be)",
+      "Bash(bash ./gradlew build -x test)",
+      "Bash(./gradlew build *)",
+      "Bash(.\\\\gradlew clean *)"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Spring Boot
+target/
+*.jar
+*.war
+
+# Environment variables (NEVER commit these)
+.env
+application-local.yml
+application-prod.yml
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# QueryDSL generated
+generated/
+
+# Claude
+.cluade/
