@@ -1,13 +1,12 @@
 package com.bikeridediary.domain.user;
 
 import com.bikeridediary.domain.bike.BikeEntity;
+import com.bikeridediary.domain.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +28,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "nickname", "provider"})
-public class UserEntity {
+public class UserEntity extends BaseEntity {
 
     // 사용자 ID (UUID)
     @Id
@@ -64,15 +63,6 @@ public class UserEntity {
     @Column(name = "fcm_token")
     private String fcmToken;
 
-    // 가입 일시
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    // 탈퇴 일시 (소프트 삭제)
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
-
     // 사용자가 소유한 바이크 목록 (양방향 One-To-Many)
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.PERSIST, orphanRemoval = false)
     @JsonManagedReference
@@ -106,13 +96,5 @@ public class UserEntity {
 
     public void updateFcmToken(String fcmToken) {
         this.fcmToken = fcmToken;
-    }
-
-    public void delete() {
-        this.deletedAt = LocalDateTime.now();
-    }
-
-    public boolean isDeleted() {
-        return deletedAt != null;
     }
 }

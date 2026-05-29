@@ -1,17 +1,15 @@
 package com.bikeridediary.domain.maintenance;
 
 import com.bikeridediary.domain.bike.BikeEntity;
+import com.bikeridediary.domain.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -19,7 +17,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MaintenanceEntity {
+public class MaintenanceEntity extends BaseEntity {
 
     // 정비 기록 ID (UUID)
     @Id
@@ -60,20 +58,6 @@ public class MaintenanceEntity {
     // 다음 정비 예정 날짜 (nullable)
     @Column(name = "next_due_date")
     private LocalDate nextDueDate;
-
-    // 등록 일시
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    // 수정 일시
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    // 삭제 일시 (소프트 삭제)
-    @Column(name = "deleted_at")
-    private LocalDateTime deletedAt;
 
     public static MaintenanceEntity create(
             BikeEntity bikeEntity,
@@ -118,14 +102,6 @@ public class MaintenanceEntity {
     public void setNextMaintenanceDue(Integer nextDueKm, LocalDate nextDueDate) {
         this.nextDueKm = nextDueKm;
         this.nextDueDate = nextDueDate;
-    }
-
-    public void delete() {
-        this.deletedAt = LocalDateTime.now();
-    }
-
-    public boolean isDeleted() {
-        return deletedAt != null;
     }
 
     public boolean isOwner(UUID userId) {
