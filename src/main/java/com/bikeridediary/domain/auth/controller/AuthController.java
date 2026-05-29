@@ -1,5 +1,7 @@
-package com.bikeridediary.domain.auth;
+package com.bikeridediary.domain.auth.controller;
 
+import com.bikeridediary.domain.auth.dto.*;
+import com.bikeridediary.domain.auth.service.AuthService;
 import com.bikeridediary.global.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

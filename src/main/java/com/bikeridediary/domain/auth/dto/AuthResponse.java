@@ -1,4 +1,4 @@
-package com.bikeridediary.domain.auth;
+package com.bikeridediary.domain.auth.dto;
 
 import com.bikeridediary.domain.user.UserResponse;
 

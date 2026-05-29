@@ -1,4 +1,4 @@
-package com.bikeridediary.domain.auth;
+package com.bikeridediary.domain.auth.dto;
 
 /**
  * 토큰 갱신 응답 DTO.

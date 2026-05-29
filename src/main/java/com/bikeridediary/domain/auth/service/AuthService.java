@@ -1,5 +1,9 @@
-package com.bikeridediary.domain.auth;
+package com.bikeridediary.domain.auth.service;
 
+import com.bikeridediary.domain.auth.dto.AuthResponse;
+import com.bikeridediary.domain.auth.dto.LoginRequest;
+import com.bikeridediary.domain.auth.dto.SignupRequest;
+import com.bikeridediary.domain.auth.dto.TokenResponse;
 import com.bikeridediary.domain.user.UserEntity;
 import com.bikeridediary.domain.user.UserRepository;
 import com.bikeridediary.domain.user.UserResponse;
