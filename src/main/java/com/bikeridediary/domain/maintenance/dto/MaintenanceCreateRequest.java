@@ -4,12 +4,13 @@ import com.bikeridediary.domain.maintenance.entity.MaintenanceType;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 // 정비 기록 생성 요청 DTO
 public record MaintenanceCreateRequest(
 
         @NotNull(message = "바이크 ID는 필수입니다")
-        java.util.UUID bikeId,
+        UUID bikeId,
 
         @NotNull(message = "정비 종류는 필수입니다")
         MaintenanceType maintenanceType,

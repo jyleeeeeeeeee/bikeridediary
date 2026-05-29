@@ -167,6 +167,7 @@ public class AuthService {
             case "kakao" -> kakaoProvider.getUserInfo(credential);
             case "google" -> googleProvider.getUserInfo(credential);
             case "apple" -> appleProvider.getUserInfo(credential);
+            case "naver" -> naverProvider.getUserInfo(credential);
             default -> throw new BusinessException(ErrorCode.AUTH_UNSUPPORTED_PROVIDER);
         };
     }
