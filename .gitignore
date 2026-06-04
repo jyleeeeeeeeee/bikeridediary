@@ -31,6 +31,5 @@ Thumbs.db
 # QueryDSL generated
 generated/
 
-# Claude
+# Claude (로컬 설정은 제외, CLAUDE.md는 git으로 동기화)
 .claude/
-CLAUDE.md
