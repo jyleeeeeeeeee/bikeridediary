@@ -86,12 +86,15 @@ CREATE TABLE maintenance_schedules (
 
 -- bikes: findByUserIdAndDeletedAtIsNullOrderByIsRepresentativeDescCreatedAtDesc
 CREATE INDEX idx_bikes_user_id_deleted_at ON bikes (user_id, deleted_at);
+-- bikes: findByUserIdAndIsRepresentativeTrueAndDeletedAtIsNull
+CREATE INDEX idx_bikes_user_id_representative_deleted_at ON bikes (user_id, is_representative, deleted_at);
 
 -- maintenances: findByBikeEntityIdAndDeletedAtIsNullOrderByMaintenanceDateDesc
 CREATE INDEX idx_maintenances_bike_id_deleted_at ON maintenances (bike_id, deleted_at);
+-- maintenances: findByBikeEntityIdAndMaintenanceTypeAndDeletedAtIsNullOrderByMaintenanceDateDesc
+CREATE INDEX idx_maintenances_bike_id_type_deleted_at ON maintenances (bike_id, maintenance_type, deleted_at);
 
 -- maintenance_schedules: findByBikeEntityIdAndDeletedAtIsNull
 CREATE INDEX idx_maintenance_schedules_bike_id_deleted_at ON maintenance_schedules (bike_id, deleted_at);
-
 -- maintenance_schedules: existsByBikeEntityIdAndMaintenanceTypeAndDeletedAtIsNull (중복 체크)
 CREATE INDEX idx_maintenance_schedules_bike_id_type_deleted_at ON maintenance_schedules (bike_id, maintenance_type, deleted_at);
